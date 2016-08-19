@@ -1,44 +1,58 @@
-![](https://www.google.com/logos/doodles/2016/41st-anniversary-of-the-discovery-of-the-mountain-of-the-butterflies-5704071614824448.2-hp2x.jpg)
+[![doodle]][doodle-story]
 
-**更多内容请访问[hosts wiki](https://github.com/racaljk/hosts/wiki)**
+[doodle]: http://p2.cri.cn/M00/65/09/CqgNOleXGt-AcXnFAAAAAAAAAAA942.980x250.jpg "undefined"
+[doodle-story]: http://2016.cctv.com/
 
------------------
+**使用本项目之前，请先阅读此 [README](README.md) 及下方的许可协议**
 
-> **请注意：下述命令或指导均可能覆盖现有hosts，如现有hosts内容重要的话请备份后再尝试下述方法。**
-> **如果不想手动备份的话，请尝试[HostsTool](https://github.com/ppoffice/Hozz)和[一些方便的scripts](https://github.com/racaljk/hosts/tree/master/scripts)。**
+**请务必注意,如果正确修改hosts后还是无法使用Google,在求助前请首先尝试通过https进行访问，如[https://www.google.com/](https://www.google.com/)**
 
-------------------
+|       [聊天室][chat-room]       |    [hosts 格式检测][travis-status]    |  [镜像hosts][mirror_of_hosts]  |  [常见问题解答][faq]  |
+| :----------------------------: | :-----------------------------------: |  :---------------------------: |  :-----------------: |
+|  [![chat-metadata]][chat-room] |  [![travis-metadata]][travis-status]  |   [![coding.net]][coding-link]  |  [![faq_icon]][faq] | 
 
-## Windows
-用文本编辑器(如Notepad++|记事本)打开`C:\Windows\System32\drivers\etc`中的hosts文件，
-把 -> [hosts](https://raw.githubusercontent.com/racaljk/hosts/master/hosts) <- 全部内容复制到hosts文件中，保存后通过
-```开始 -> 运行 -> 输入cmd -> 在CMD窗口输入ipconfig /flushdns```使其生效。
-<br>**注意：如果遇到无法保存，请右键hosts->属性->安全，然后选择你登陆的用户名，最后点击编辑，勾选"写入"即可。**
+[chat-metadata]: https://badges.gitter.im/racaljk/hosts.svg "Join the chat at https://gitter.im/racaljk/hosts"
+[chat-room]: https://gitter.im/racaljk/hosts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge "Gitter chat room"
+[travis-metadata]: https://travis-ci.org/racaljk/hosts.svg "Travis CI Metadata"
+[travis-status]: https://travis-ci.org/racaljk/hosts "Travis CI Status"
+[coding.net]: https://i.imgur.com/JDpN8Bd.png
+[coding-link]: https://coding.net/u/scaffrey/p/hosts/git "Coding"
+[mirror_of_hosts]: https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts
+[faq_icon]: http://www.easyicon.net/api/resizeApi.php?id=1190784&size=64
+[faq]: https://github.com/racaljk/hosts/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94
 
-## Linux
-开启终端(快捷键为"Ctrl + Alt + T")输入`bash -c 'wget https://raw.githubusercontent.com/racaljk/hosts/master/hosts -qO /tmp/hosts && sudo mv /tmp/hosts /etc/hosts'`
-<br>最后在终端输入`sudo systemctl restart NetworkManager`
-<br>**注意 : 非systemd发行版，终端输入`sudo rcnscd restart`，如果不清楚请两个都试一次，或者参考[#100](https://github.com/racaljk/hosts/issues/100)**
+## 如何更新 hosts？
+**推荐**使用项目内 [Host Tools](tools) 来**自动地 备份/更新** hosts。
 
-## Mac OS
-可以使用[Gas Mask](http://www.macupdate.com/app/mac/29949/gas-mask/)工具修改
+* **Windows** 平台:
+   1. 用文本编辑器（如 [Notepad++](https://notepad-plus-plus.org/)）打开：`
+  %SystemRoot%\System32\drivers\etc\hosts`
+  > ![](https://i.imgur.com/BwW2cft.jpg)
 
-或者在`/private/etc/`目录下新建或修改[hosts](https://raw.githubusercontent.com/racaljk/hosts/master/hosts)，然后终端输入`sudo killall -HUP mDNSResponder`使其生效。
+   2. 将 [hosts][github-hosts] 全部内容复制到上面的文件内并保存。
+   > 注意：如果遇到无法保存，请右键文件hosts并找到“属性” -> “安全”，然后选择你登陆的用户名，最后点击编辑，勾选“写入”即可。
 
-## Android
-请在`/system/etc`目录下新建或修改[hosts](https://raw.githubusercontent.com/racaljk/hosts/master/hosts)，然后通过`开启飞行模式 -> 关闭飞行模式 `的方式使其生效。
+* **其他平台**请将 [hosts][github-hosts] 全部内容复制到`/etc/hosts`中并保存。
+> 附：[各平台 hosts 位置](http://www.wikiwand.com/zh/Hosts%E6%96%87%E4%BB%B6#/.E6.96.87.E4.BB.B6.E4.BD.8D.E7.BD.AE.E5.8F.8A.E9.BB.98.E8.AE.A4.E5.86.85.E5.AE.B9)
 
-## iOS
-请在`/etc`目录下新建或修改[hosts](https://raw.githubusercontent.com/racaljk/hosts/master/hosts)使其生效。
+**注意**： 若更新后，hosts 没有立即生效，请重置网络：
 
-## Annoucement
-* Linux、Mac、Android用户请用Notepad++ 转换文本编码和换行符格式，否则hosts可能会无法正常工作。对此你可以参考这个[解决方案](http://www.zhihu.com/question/29064201/answer/63612656)。
-* Android和iOS需要root权限和越狱后才能访问hosts文件。
-* 由于部分App不支持[SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)，故[不推荐在移动设备上使用](https://github.com/racaljk/hosts/wiki/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E5%9C%A8%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%BD%BF%E7%94%A8hosts%EF%BC%9F)
-* 转载和使用过程中请保留hosts文件注释以及任何能体现版权的信息。
-* 衷心感谢每位参与开源hosts的用户[Contributors](https://github.com/racaljk/hosts/graphs/contributors)
+   - 在系统设置内开关网络
+   - 启用禁用飞行模式
+   - 重启系统
+
+## 更多
+- [关于中国的互联网](https://github.com/racaljk/hosts/wiki/关于中国的互联网)
+- 获取更多信息，请访问 [Wiki 页面](https://github.com/racaljk/hosts/wiki) 。如有问题，请开 [Issue](https://github.com/racaljk/hosts/issues) 反馈。
+
 
 ## License
-* Code of this project is licensed under the [MIT License](https://github.com/racaljk/hosts/blob/master/LICENSE)
-* Content of this project (including hosts , wiki and Readme) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- 本项目的所有代码除另有说明外,均按照 [MIT License](LICENSE) 发布。
+- 本项目的hosts，README.MD，wiki等资源基于[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+这意味着你可以拷贝、并再发行本项目的内容，但是你将必须同样**提供原作者信息以及协议声明**。同时你也**不能将本项目用于商业用途**，
+按照我们狭义的理解（增加附属条款），凡是**任何盈利的活动皆属于商业用途**。
+- 请在遵守当地相关法律法规的前提下使用本项目。
+
 ![img-source-from-https://github.com/docker/dockercraft](https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true)
+
+[github-hosts]: https://raw.githubusercontent.com/racaljk/hosts/master/hosts "hosts on Github"
